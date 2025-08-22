@@ -14,20 +14,31 @@ public class SensorService {
         switch (menu.TelaInicial()){
             case 1 -> {
                 mensagem.AreaDeCadastro();
-                switch (menu.TipoDeSensor()){
+                armazenamento.CadastroSensor();
+            }
+            case 2 -> {
+                mensagem.AreaDeListagem();
+                switch (menu.Listagem()){
                     case 1 -> {
-                        mensagem.CadastroTemperatura();
-                        armazenamento.CadastroSensorTemperatura();
+                        armazenamento.ListarSensores();
                     }
                     case 2 -> {
-                        mensagem.CadastroVibracao();
-                        armazenamento.CadastroSensorVibracao();
+                        armazenamento.ListarSensoresVibracao();
+                    }
+                    case 3 -> {
+                        armazenamento.ListarSensoresTemperatura();
+                    }
+                    case 4 -> {
+                        armazenamento.ListarSensoresCriticos();
                     }
                 }
             }
-            case 2 -> {}
-            case 3 -> {}
-            case 4 -> {}
+            case 3 -> {
+                armazenamento.RegistrarMedicao();
+            }
+            case 4 -> {
+                armazenamento.ListarMedicoes();
+            }
             case 5 -> {}
             case 0 -> {
                 mensagem.SairSistema();

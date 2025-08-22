@@ -10,6 +10,6 @@ public class SensorTemperatura extends Sensor{
 
     @Override
     public String toString(){
-        return "";
+        return " - Codigo: " + codigo + " | Nome do Equipamento: " + nomeEquipamento + " | Tipo de Sensor: " + tipo;
     }
 }
