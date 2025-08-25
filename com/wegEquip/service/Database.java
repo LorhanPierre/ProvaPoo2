@@ -26,7 +26,7 @@ public class Database {
         if(tipo.equalsIgnoreCase("Vibração")){
             mensagens.CadastroVibracao();
 
-            int codigo = informacoes.CodigoSensor();
+            String codigo = informacoes.CodigoSensor();
             String nome = informacoes.NomeSensor();
 
             Sensor novoSensor = new SensorVibracao(codigo,nome,tipo);
@@ -36,7 +36,7 @@ public class Database {
         } else if (tipo.equalsIgnoreCase("Temperatura")) {
             mensagens.CadastroTemperatura();
 
-            int codigo = informacoes.CodigoSensor();
+            String codigo = informacoes.CodigoSensor();
             String nome = informacoes.NomeSensor();
 
             Sensor novoSensor = new SensorTemperatura(codigo,nome,tipo);
@@ -56,17 +56,17 @@ public class Database {
     }
 
     public void ListarSensoresTemperatura(){
-        for(Sensor sensores : sensores){
-            if(sensores instanceof SensorTemperatura){
-                System.out.println(sensores);
+        for(Sensor sensorBuscado : sensores){
+            if(sensorBuscado instanceof SensorTemperatura){
+                System.out.println(sensorBuscado);
             }
         }
     }
 
     public void ListarSensoresVibracao(){
-        for(Sensor sensores : sensores){
-            if(sensores instanceof SensorTemperatura){
-                System.out.println(sensores);
+        for(Sensor sensorBuscado : sensores){
+            if(sensorBuscado instanceof SensorVibracao){
+                System.out.println(sensorBuscado);
             }
         }
     }
@@ -79,35 +79,72 @@ public class Database {
         String tipo = informacoes.TipoDeSensor();
         if(tipo.equalsIgnoreCase("Vibração")){
 
-            int codigo = informacoes.CodigoSensor();
-            double medidas = informacoes.ValorMedicao();
-            String data = informacoes.DataMedicao();
+            String codigoBuscado = informacoes.CodigoSensor();
+            for(Sensor sensorBuscado : sensores){
+                if(sensorBuscado instanceof SensorVibracao && codigoBuscado.equalsIgnoreCase(sensorBuscado.getCodigo())){
 
-            if(medidas> 60){
-                alerta = "("+medidas+" > 60hz) está fora dos Padrões";
+                    double medidas = informacoes.ValorMedicao();
+                    String data = informacoes.DataMedicao();
+
+                    if(medidas > 60){
+                        alerta = " | ⚠\uFE0F ALERTA ⚠\uFE0F";
+                        System.out.println("⚠\uFE0F ALERTA ⚠\uFE0F ("+medidas+" > 60hz) Este sensor está fora dos Padrões");
+                    }
+
+                    Medicao medicao = new Medicao(medidas, data,alerta, codigoBuscado,null, null);
+
+                    Medicoes.add(medicao);
+                }
+                else{
+                    mensagens.SensorNaoEncontrado();
+                }
             }
 
-            Medicao medicao = new Medicao(medidas, data,alerta, codigo,null, null);
-
-            Medicoes.add(medicao);
         }else  if (tipo.equalsIgnoreCase("Temperatura")){
-            int codigo = informacoes.CodigoSensor();
-            double medidas = informacoes.ValorMedicao();
-            String data = informacoes.DataMedicao();
 
-            if(medidas> 60){
-                alerta = "("+medidas+" > 80°) está fora dos Padrões";
+            String codigoBuscado = informacoes.CodigoSensor();
+            for(Sensor sensorBuscado : sensores){
+                if(sensorBuscado instanceof SensorTemperatura && codigoBuscado.equalsIgnoreCase(sensorBuscado.getCodigo())){
+
+                    double medidas = informacoes.ValorMedicao();
+                    String data = informacoes.DataMedicao();
+
+                    if(medidas > 80){
+                        alerta = " | ⚠\uFE0F ALERTA ⚠\uFE0F";
+                        System.out.println("⚠\uFE0F ALERTA ⚠\uFE0F ("+medidas+" > 80°) Este sensor está fora dos Padrões");
+                    }
+
+                    Medicao medicao = new Medicao(medidas, data,alerta, codigoBuscado,null, null);
+
+                    Medicoes.add(medicao);
+                }
+                else {
+                    mensagens.SensorNaoEncontrado();
+                }
             }
-
-            Medicao medicao = new Medicao(medidas, data,alerta, codigo,null, null);
-
-            Medicoes.add(medicao);
         }
     }
 
     public void ListarMedicoes(){
-        for(Medicao medidas : Medicoes){
-            System.out.println(medidas);
+
+        String codigoBuscado = informacoes.CodigoSensor();
+        for(Medicao sensorBuscado : Medicoes){
+            if(codigoBuscado.equalsIgnoreCase(sensorBuscado.getCodigo())){
+                System.out.println(sensorBuscado);
+            }
         }
+
+    }
+
+    public void VerificarAlertas(){
+
+        int alertas = 0;
+
+        for(Medicao sensorBuscado : Medicoes){
+            if(sensorBuscado.getAlerta() != null ){
+
+            }
+        }
+
     }
 }

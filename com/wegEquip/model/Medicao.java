@@ -15,7 +15,7 @@ public class Medicao extends Sensor{
 
     }
 
-    public Medicao(double valor,String dataHora,String alerta,int codigo, String nomeEquipamento,String tipo){
+    public Medicao(double valor,String dataHora,String alerta,String codigo, String nomeEquipamento,String tipo){
 
         super(codigo, nomeEquipamento,tipo);
         this.valor = valor;
@@ -55,6 +55,6 @@ public class Medicao extends Sensor{
     @Override
     public String toString(){
 
-        return " - codigo" + codigo + " | valor Medição:"+valor+" | dataHora: " + dataHora + " | !Alerta! " + Alerta;
+        return " - codigo: " + codigo + " | valor Medição: "+valor+" | dataHora: " + dataHora + Alerta;
     }
 }

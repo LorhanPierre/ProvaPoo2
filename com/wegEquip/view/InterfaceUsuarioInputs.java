@@ -57,6 +57,7 @@ public class InterfaceUsuarioInputs {
                 int opcao = input.nextInt();
                 escolha = opcao;
                 error = false;
+                input.nextLine();
 
             } catch (InputMismatchException erro) {
                 System.err.print("Error: Você digitou um valor errado, tente digitar um número.\n:");
@@ -75,26 +76,12 @@ public class InterfaceUsuarioInputs {
         return tipoSensor;
     }
 
-    public int CodigoSensor(){
-        int escolha = 0;
-        boolean error = true;
+    public String CodigoSensor(){
 
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃ - Digite o código do Sensor          ┃");
         System.out.print("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n:");
-        do {
-            try {
-                int opcao = input.nextInt();
-                input.nextLine();
-                escolha = opcao;
-                error = false;
-
-            } catch (InputMismatchException erro) {
-                System.err.print("Error: Você digitou um valor errado, tente digitar um número.\n:");
-                input.nextLine();
-            }
-        }while(error);
-
+        String escolha = input.nextLine();
         return escolha;
     }
 

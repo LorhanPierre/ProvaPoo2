@@ -23,10 +23,10 @@ public class SensorService {
                         armazenamento.ListarSensores();
                     }
                     case 2 -> {
-                        armazenamento.ListarSensoresVibracao();
+                        armazenamento.ListarSensoresTemperatura();
                     }
                     case 3 -> {
-                        armazenamento.ListarSensoresTemperatura();
+                        armazenamento.ListarSensoresVibracao();
                     }
                     case 4 -> {
                         armazenamento.ListarSensoresCriticos();

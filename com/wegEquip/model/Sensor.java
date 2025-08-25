@@ -2,18 +2,18 @@ package com.wegEquip.model;
 
 public class Sensor {
 
-    protected int codigo;
+    protected String codigo;
     protected String nomeEquipamento;
     protected String tipo;
 
     public Sensor(){
 
-        this.codigo = 0;
+        this.codigo = "";
         this.nomeEquipamento = "";
         this.tipo = "";
     }
 
-    public Sensor(int codigo,String nomeEquipamento, String tipo){
+    public Sensor(String codigo,String nomeEquipamento, String tipo){
 
         this.codigo = codigo;
         this.nomeEquipamento = nomeEquipamento;
@@ -21,11 +21,12 @@ public class Sensor {
 
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
+
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
